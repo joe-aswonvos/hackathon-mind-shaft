@@ -1,15 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="b267a45b-3537-48d0-bfb3-02b238c9d1a3" name="Changes" comment="" />
+    <list default="true" id="b267a45b-3537-48d0-bfb3-02b238c9d1a3" name="Changes" comment="Rename 'mind_shaft' app to 'flash_cards'.&#10;&#10;Updated app configuration, file paths, and references to reflect the renaming of the Django app from 'mind_shaft' to 'flash_cards'. Ensures consistency across the project and maintains functionality.">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/MindShaft.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/MindShaft.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MindShaft/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/MindShaft/settings.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "joe-aswonvos"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/joe-aswonvos/hackathon-mind-shaft.git",
+    "accountId": "6cffd092-dfc1-471a-904f-0eb35f59749a"
+  }
+}]]></component>
   <component name="ProjectColorInfo"><![CDATA[{
   "associatedIndex": 8
 }]]></component>
@@ -21,12 +48,50 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "RunOnceActivity.OpenDjangoStructureViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\flyin\Documents\Repos\MindShaft\flash_cards" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="MindShaft" type="Python.DjangoServer" factoryName="Django server">
+      <module name="MindShaft" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <option name="port" value="8000" />
+      <option name="host" value="" />
+      <option name="additionalOptions" value="" />
+      <option name="browserUrl" value="" />
+      <option name="runTestServer" value="false" />
+      <option name="runNoReload" value="false" />
+      <option name="useCustomRunCommand" value="false" />
+      <option name="customRunCommand" value="" />
+      <method v="2" />
+    </configuration>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -43,8 +108,42 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1742984510317</updated>
-      <workItem from="1742984511360" duration="3000" />
+      <workItem from="1742984511360" duration="5358000" />
     </task>
+    <task id="LOCAL-00001" summary="initialize Django project structure and configuration files">
+      <option name="closed" value="true" />
+      <created>1742984989415</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1742984989415</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Initialize Django project &quot;MindShaft&quot;&#10;&#10;Set up core structure for the &quot;MindShaft&quot; Django project, including settings, URLs, WSGI/ASGI configurations, and default app scaffolding. Also added basic files for models, views, tests, and admin setup within the &quot;mind_shaft&quot; app.">
+      <option name="closed" value="true" />
+      <created>1742985025095</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1742985025095</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Rename 'mind_shaft' app to 'flash_cards'.&#10;&#10;Updated app configuration, file paths, and references to reflect the renaming of the Django app from 'mind_shaft' to 'flash_cards'. Ensures consistency across the project and maintains functionality.">
+      <option name="closed" value="true" />
+      <created>1742987100510</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1742987100510</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="initialize Django project structure and configuration files" />
+    <MESSAGE value="Initialize Django project &quot;MindShaft&quot;&#10;&#10;Set up core structure for the &quot;MindShaft&quot; Django project, including settings, URLs, WSGI/ASGI configurations, and default app scaffolding. Also added basic files for models, views, tests, and admin setup within the &quot;mind_shaft&quot; app." />
+    <MESSAGE value="Rename 'mind_shaft' app to 'flash_cards'.&#10;&#10;Updated app configuration, file paths, and references to reflect the renaming of the Django app from 'mind_shaft' to 'flash_cards'. Ensures consistency across the project and maintains functionality." />
+    <option name="LAST_COMMIT_MESSAGE" value="Rename 'mind_shaft' app to 'flash_cards'.&#10;&#10;Updated app configuration, file paths, and references to reflect the renaming of the Django app from 'mind_shaft' to 'flash_cards'. Ensures consistency across the project and maintains functionality." />
   </component>
 </project>
