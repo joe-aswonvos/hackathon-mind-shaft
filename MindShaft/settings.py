@@ -27,7 +27,7 @@ if os.path.exists(os.path.join(BASE_DIR, 'env.py')):
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config['SECRET_KEY']
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', 'False').lower() == 'true'
@@ -36,7 +36,7 @@ ALLOWED_HOSTS = ['.herokuapp.com','127.0.0.1']
 
 SITE_ID = 1
 
-AUTH_USER_MODEL = 'admin_app.User'
+AUTH_USER_MODEL = 'flash_cards.User'
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_USERNAME_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = "optional"
@@ -53,7 +53,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'flash_cards.apps.MindShaftConfig',
+    'flash_cards',
 ]
 
 MIDDLEWARE = [
