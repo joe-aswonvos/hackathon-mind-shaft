@@ -4,16 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b267a45b-3537-48d0-bfb3-02b238c9d1a3" name="Changes" comment="Create flash_cards app with models and integrate it into project&#10;&#10;Added models for User, Deck, Card, UserHistory, and Comment in the flash_cards app to support core application functionality. Updated project settings to use the custom User model and included flash_cards URLs in the main project URL configuration. Adjusted SECRET_KEY handling and other minor settings for improved environment configuration.">
-      <change afterPath="$PROJECT_DIR$/flash_cards/templates/flash_cards/create_edit_card.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flash_cards/templates/flash_cards/create_edit_deck.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flash_cards/templates/flash_cards/deck.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flash_cards/templates/flash_cards/index.html" afterDir="false" />
+<<<<<<< HEAD
+    <list default="true" id="b267a45b-3537-48d0-bfb3-02b238c9d1a3" name="Changes" comment="Refactor templates and views for enhanced deck rendering&#10;&#10;Improved `base.html` with dynamic block tags for reusability across pages. Updated `index.html` to render user-specific, public, and favorite decks using new view logic. Adjusted models, views, and admin for better clarity and functionality." />
+=======
+    <list default="true" id="b267a45b-3537-48d0-bfb3-02b238c9d1a3" name="Changes" comment="Refactor templates and enhance index view logic.&#10;&#10;Added block tags to `base.html` for dynamic title and content rendering. Updated `index` view to display user-specific, public, and favorite decks. Included additional helper functions and docstrings to improve clarity and maintainability of views.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MindShaft/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/MindShaft/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flash_cards/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/flash_cards/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flash_cards/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/flash_cards/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flash_cards/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/flash_cards/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flash_cards/templates/flash_cards/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/flash_cards/templates/flash_cards/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/flash_cards/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/flash_cards/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html" afterDir="false" />
     </list>
+>>>>>>> origin/joe-working
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -50,6 +52,9 @@
     &quot;accountId&quot;: &quot;6cffd092-dfc1-471a-904f-0eb35f59749a&quot;
   }
 }</component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 8
 }</component>
@@ -73,6 +78,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "run.code.analysis.last.selected.profile": "pProject Default",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -165,7 +171,27 @@
       <option name="project" value="LOCAL" />
       <updated>1743075346194</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Refactor templates and enhance index view logic.&#10;&#10;Added block tags to `base.html` for dynamic title and content rendering. Updated `index` view to display user-specific, public, and favorite decks. Included additional helper functions and docstrings to improve clarity and maintainability of views.">
+      <option name="closed" value="true" />
+      <created>1743155477040</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1743155477040</updated>
+    </task>
+<<<<<<< HEAD
+    <task id="LOCAL-00007" summary="Refactor templates and views for enhanced deck rendering&#10;&#10;Improved `base.html` with dynamic block tags for reusability across pages. Updated `index.html` to render user-specific, public, and favorite decks using new view logic. Adjusted models, views, and admin for better clarity and functionality.">
+      <option name="closed" value="true" />
+      <created>1743159672058</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1743159672058</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
+=======
+    <option name="localTasksCounter" value="7" />
+>>>>>>> origin/joe-working
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -177,6 +203,13 @@
     <MESSAGE value="Rename 'mind_shaft' app to 'flash_cards'.&#10;&#10;Updated app configuration, file paths, and references to reflect the renaming of the Django app from 'mind_shaft' to 'flash_cards'. Ensures consistency across the project and maintains functionality." />
     <MESSAGE value="Initialize Django project and configure environment settings&#10;&#10;Added base project structure for &quot;MindShaft&quot; with Django settings, templates, and static files configuration. Integrated environment variable support, Heroku settings, dynamic database connections, and user model customization. Updated `.idea` metadata, dependencies, and `.gitignore` to complete setup." />
     <MESSAGE value="Create flash_cards app with models and integrate it into project&#10;&#10;Added models for User, Deck, Card, UserHistory, and Comment in the flash_cards app to support core application functionality. Updated project settings to use the custom User model and included flash_cards URLs in the main project URL configuration. Adjusted SECRET_KEY handling and other minor settings for improved environment configuration." />
-    <option name="LAST_COMMIT_MESSAGE" value="Create flash_cards app with models and integrate it into project&#10;&#10;Added models for User, Deck, Card, UserHistory, and Comment in the flash_cards app to support core application functionality. Updated project settings to use the custom User model and included flash_cards URLs in the main project URL configuration. Adjusted SECRET_KEY handling and other minor settings for improved environment configuration." />
+    <MESSAGE value="Add URL routing and basic views for flash_cards app&#10;&#10;Defined URLs and corresponding views for flash_cards, including deck and card management actions. Updated the main project to include flash_cards URLs as the root path and added templates to render views." />
+    <MESSAGE value="Refactor templates and enhance index view logic.&#10;&#10;Added block tags to `base.html` for dynamic title and content rendering. Updated `index` view to display user-specific, public, and favorite decks. Included additional helper functions and docstrings to improve clarity and maintainability of views." />
+<<<<<<< HEAD
+    <MESSAGE value="Refactor templates and views for enhanced deck rendering&#10;&#10;Improved `base.html` with dynamic block tags for reusability across pages. Updated `index.html` to render user-specific, public, and favorite decks using new view logic. Adjusted models, views, and admin for better clarity and functionality." />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor templates and views for enhanced deck rendering&#10;&#10;Improved `base.html` with dynamic block tags for reusability across pages. Updated `index.html` to render user-specific, public, and favorite decks using new view logic. Adjusted models, views, and admin for better clarity and functionality." />
+=======
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor templates and enhance index view logic.&#10;&#10;Added block tags to `base.html` for dynamic title and content rendering. Updated `index` view to display user-specific, public, and favorite decks. Included additional helper functions and docstrings to improve clarity and maintainability of views." />
+>>>>>>> origin/joe-working
   </component>
 </project>
