@@ -9,8 +9,14 @@ from .forms import DeckForm
 
 
 def index(request):
-    """view for the main landing page - if a user is unregistered or not logged in, they will be prompted to do so
-    for a registered user it will show a create deck button, a list of their decks, a list of favourited decks and a list of public decks"""
+    """View for the main landing page - if a user is unregistered or not logged in, they will be prompted to do so.
+    For a registered user, it will show a create deck button, a list of their decks, a list of favourited decks, and a list of public decks.
+    """
+
+    # Default values for unauthenticated users
+    user_decks = []
+    public_decks = []
+    favourite_decks = []
 
     if request.user.is_authenticated:
         # Fetch decks created by the authenticated user
@@ -23,15 +29,11 @@ def index(request):
         favourite_deck_ids = list(UserHistory.objects.filter(user=request.user, favourite=True).values_list('deck__id', flat=True))
         favourite_decks = Deck.objects.filter(id__in=favourite_deck_ids).annotate(card_count=Count("card"))
 
-    else:
-        pass
-
     return render(
         request,
         "flash_cards/index.html",
         {"user_decks": user_decks, "public_decks": public_decks, "favourite_decks": favourite_decks},
     )
-
 
 
 def create_deck(request):
