@@ -1,4 +1,14 @@
 asgiref==3.8.1
+crispy-bootstrap5==2024.10
+dj-database-url==2.3.0
 Django==5.1.7
+django-allauth==65.6.0
+django-crispy-forms==2.3
+gunicorn==23.0.0
+packaging==24.2
+psycopg2-binary==2.9.10
+python-decouple==3.8
 sqlparse==0.5.3
+typing_extensions==4.13.0
 tzdata==2025.2
+whitenoise==6.9.0
