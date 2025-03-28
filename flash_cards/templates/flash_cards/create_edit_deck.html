@@ -1,1 +1,16 @@
-{% extends base.html %}
+{% extends "base.html" %}
+
+{% block content %}
+<h2>{% if deck %}Edit Deck{% else %}Create Deck{% endif %}</h2>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">
+        {% if deck %}Update{% else %}Create{% endif %}
+    </button>
+</form>
+
+<a href="{% url 'index' %}">Cancel</a>
+{% endblock %}
+

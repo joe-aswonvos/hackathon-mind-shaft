@@ -9,6 +9,7 @@ The models required for the flash cards app are:
 5. Comment - A model to store the comments for a given card"""
 # Create your models here.
 
+
 class UserManager(BaseUserManager):
     def create_user(self, email, username, password=None, **extra_fields):
         if not email:
@@ -19,9 +20,11 @@ class UserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
+
 class User(AbstractBaseUser, PermissionsMixin):
     """
-    User model to store the user details - basic identifiers, plus datetimes of login and registration
+    User model to store the user details - basic identifiers, plus datetimes
+    of login and registration
     """
     username = models.CharField(max_length=50)
     email = models.EmailField(unique=True)
@@ -40,8 +43,10 @@ class User(AbstractBaseUser, PermissionsMixin):
 
 class Deck(models.Model):
     """
-    Deck model to store the deck details - deck name, date created and date edited, a list of the order of cards, a list of keywords
-    and boolean values for public, whether a deck is Leitner and whether the deck should be randomisable
+    Deck model to store the deck details - deck name, date created and
+    date edited, a list of the order of cards, a list of keywords, and
+    boolean values for public,
+    whether a deck is Leitner and whether the deck should be randomisable
     """
     creator = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=50)
@@ -59,8 +64,13 @@ class Deck(models.Model):
 
 class Card(models.Model):
     """
-    Card model to store the card details, a foreign key of the deck the card belongs to, a cardname, an optional card_image url, text for the card, an optional hidden
-    text field, a boolean of whether the card will have a question, a question text field, a dictionary of answers and a boolean on whether comments are enabled for that card
+    Card model to store the card details. It includes:
+    a foreign key of the deck the card belongs to, a card name,
+    an optional card_image URL, text for the card, and an optional
+    hidden text field.
+    text field, a boolean of whether the card will have a question,
+    a question text field, a dictionary of answers, and a boolean
+    on whether comments are enabled for that card
     """
     deck = models.ForeignKey(Deck, on_delete=models.CASCADE)
     name = models.CharField(max_length=50)
@@ -78,8 +88,12 @@ class Card(models.Model):
 
 class UserHistory(models.Model):
     """
-    UserHistory model to store the users history for a given deck, a foreign key of the user, a foreign key of the deck, date created, date last accessed, the first score achieved (optional)
-    , the max score achieved (optional), a dictionary of leitner values(optional) and a boolean of whether the deck has been flagged as a favourite
+    UserHistory model to store the users history for a given deck.
+    It includes a foreign key of the user, a foreign key of the deck,
+    date created, date last accessed, and the first score achieved (optional),
+    the max score achieved (optional),
+    a dictionary of leitner values (optional),
+    and a boolean of whether the deck has been flagged as a favourite
     """
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     deck = models.ForeignKey(Deck, on_delete=models.CASCADE)
@@ -97,7 +111,9 @@ class UserHistory(models.Model):
 
 class Comment(models.Model):
     """
-    Comment model to store the comments for a given card, a foreign key of the card, a foreign key of the user, the date created, the date edited, a title and a comment
+    Comment model to store the comments for a given card. It includes:
+    a foreign key of the card, a foreign key of the user, the date created,
+    the date edited, a title, and a comment.
     """
     card = models.ForeignKey(Card, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
