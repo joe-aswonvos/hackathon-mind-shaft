@@ -13,8 +13,12 @@ class UserHistoryAdmin(admin.ModelAdmin):
     list_display = ('user', 'deck', 'favourite')
     list_filter = ('favourite',)
 
+class DeckAdmin(admin.ModelAdmin):
+    list_display = ('id', 'name', 'creator', 'public')
+    list_filter = ('public',)
+
 admin.site.register(User, UserAdmin)
-admin.site.register(Deck)
+admin.site.register(Deck, DeckAdmin)
 admin.site.register(Card)
 admin.site.register(UserHistory, UserHistoryAdmin)
 admin.site.register(Comment)

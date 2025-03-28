@@ -82,3 +82,5 @@ yarn.lock
 
 # pip-tools
 *.lock
+
+.staticfiles/
