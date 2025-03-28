@@ -7,7 +7,7 @@
 {% block content %}
     <div class="container mt-5">
 
-
+        
 
         <!-- Row for User Decks -->
 
@@ -22,7 +22,7 @@
                 &rarr;
             </button>
             <div id="user-decks-row" class="d-flex gap-3 overflow-auto">
-                {% if user_decks %}
+                {% if user_decks and user_decks|length > 0 %}
                     {% for deck in user_decks %}
                         {% include "flash_cards/snippets/deck_card.html" %}
                     {% endfor %}
@@ -45,7 +45,7 @@
                 &rarr;
             </button>
             <div id="favourite-decks-row" class="d-flex gap-3 overflow-auto">
-                {% if favourite_decks %}
+                {% if favourite_decks and favourite_decks|length > 0 %}
                     {% for deck in favourite_decks %}
                         {% include "flash_cards/snippets/deck_card.html" %}
                     {% endfor %}
@@ -67,7 +67,7 @@
                 &rarr;
             </button>
             <div id="public-decks-row" class="d-flex gap-3 overflow-auto">
-                {% if public_decks %}
+                {% if public_decks and public_decks|length > 0 %}
                     {% for deck in public_decks %}
                         {% include "flash_cards/snippets/deck_card.html" %}
                     {% endfor %}

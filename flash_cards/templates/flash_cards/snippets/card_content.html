@@ -1,0 +1,60 @@
+<div class="container col-12 col-md-6">
+    <div class="card">
+        <div class="card-body d-flex justify-content-between align-items-center">
+            <!-- Card Name on the Left -->
+            <h5 class="card-title mb-0">
+                {{ current_card.name }}
+            </h5>
+
+            <!-- Edit and Delete Icons on the Right -->
+            <div>
+                <!-- Edit Icon -->
+                <a href="{% url 'edit_card' deck.id current_card.id %}" class="text-primary me-3" title="Edit Card">
+                    <span class="material-icons">
+                        edit
+                    </span>
+                </a>
+
+                <!-- Delete Icon -->
+                <a href="{% url 'delete_card' deck.id current_card.id %}" class="text-danger" title="Delete Card">
+                    <span class="material-icons">
+                        delete
+                    </span>
+                </a>
+            </div>
+        </div>
+        <!-- Card Image -->
+        <div class="card-img-top text-center">
+            {% if current_card.image %}
+                <img src="{{ current_card.image.url }}" alt="{{ current_card.name }}" class="img-fluid">
+            {% else %}
+            {% endif %}
+        </div>
+        <!-- Card Text -->
+        <div class="card-text m-3 ">
+            <p>{{ current_card.text }}</p>
+        </div>
+        <!-- Card Hidden Text -->
+            {% if current_card.hidden_text %}
+                <div class="accordion m-3" id="hiddenTextAccordion">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingHiddenText">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseHiddenText" aria-expanded="false"
+                                    aria-controls="collapseHiddenText">
+                                Click to Reveal
+                            </button>
+                        </h2>
+                        <div id="collapseHiddenText" class="accordion-collapse collapse"
+                             aria-labelledby="headingHiddenText" data-bs-parent="#hiddenTextAccordion">
+                            <div class="accordion-body">
+                                {{ current_card.hidden_text }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% else %}
+            {% endif %}
+    </div>
+
+</div>

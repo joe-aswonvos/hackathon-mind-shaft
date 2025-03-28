@@ -1,1 +1,62 @@
-{% extends base.html %}
+{% extends "base.html" %}
+
+{% block title %}
+    {{ deck.name }}
+{% endblock %}
+
+{% block content %}
+
+    <div class="container my-5">
+        <div class="row justify-content-center">
+            <h1 class="text-center">{{ deck.name }}</h1>
+        </div>
+        <div class="row justify-content-center mt-3">
+            <div class="col-4 d-flex justify-content-center">
+                <a href="{% url 'index' %}" class="btn btn-secondary mb-3">Home</a>
+            </div>
+
+            <div class="col-4 d-flex justify-content-center">
+                <button class="btn btn-primary mb-3" type="button" data-bs-toggle="offcanvas"
+                        data-bs-target="#offcanvasDeck"
+                        aria-controls="offcanvasDeck">
+                    Show Deck
+                </button>
+            </div>
+
+            <div class="col-4 d-flex justify-content-center">
+                <a class="btn btn-success mb-3" href="{% url 'deck' deck.id %}?index={{ next_index }}">
+                    Next
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasDeck" aria-labelledby="offcanvasDeckLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasDeckLabel">{{ deck.name }}</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <div class="row">
+                <!-- Create a card for each card in the off-canvas -->
+                {% for card in cards %}
+                    <div class="col-md-4 mb-3">
+                        <a href="{% url 'deck' deck.id %}?index={{ forloop.counter0 }}" class="text-decoration-none">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ card.name }}</h5>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                {% endfor %}
+
+            </div>
+        </div>
+    </div>
+
+    <div id="cardContent">
+        {% include "flash_cards/snippets/card_content.html" %}
+    </div>
+
+{% endblock %}

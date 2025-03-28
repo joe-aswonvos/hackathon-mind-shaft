@@ -2,8 +2,7 @@
 
 <div class="card" style="width: 18rem;">
     <div class="card-body">
-        <h5 class="card-title"><a href="{% url 'deck' deck_id %}">{{ deck.name }}</a></h5>
-        <h6 class="card-subtitle mb-2 text-muted">{{ deck.keywords }}</h6>
+        <h5 class="card-title"><a href="{% url 'deck' deck.id %}">{{ deck.name }}</a></h5>
         <div>
             {% for keyword in deck.keywords|split:" " %}
                 <button type="button" class="btn btn-secondary btn-sm">

@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,reverse
 from django.utils import timezone
 from django.db.models import Count
 
@@ -23,7 +23,9 @@ def index(request):
         favourite_decks = Deck.objects.filter(id__in=favourite_deck_ids).annotate(card_count=Count("card"))
 
     else:
-        pass
+        user_decks = []
+        public_decks = []
+        favourite_decks = []
 
     return render(
         request,
@@ -36,29 +38,54 @@ def create_deck(request):
     """view for creating a new deck, utilising the same template as editing a deck, but with no existing deck_id passed to populate it"""
     return render(request, "flash_cards/create_edit_deck.html")
 
+
 def deck(request, deck_id):
     """view for a single deck, returning every card in the deck allowing the user to cycle between them"""
-    return render(request, "flash_cards/deck.html")
+    card_deck = Deck.objects.get(id=deck_id)
+    cards = Card.objects.filter(deck=card_deck)
+
+    # Get the index of the card to display, default to 0 (first card) if not provided
+    index = int(request.GET.get('index', 0))
+
+    # Ensure the index is within the bounds of the cards list
+    if index < 0 or index >= len(cards):
+        index = 0
+
+    # Get the specific card by index
+    current_card = cards[index]
+
+    # Calculate the next index
+    next_index = index + 1 if index + 1 < len(cards) else 0
+
+    context = {
+        "deck": card_deck,
+        "cards": cards,
+        "current_card": current_card,
+        "next_index": next_index,
+    }
+
+    return render(request, "flash_cards/deck.html", context)
+
 
 def edit_deck(request, deck_id):
     """view for editing a deck, utilising the same template as creating a deck, but with the existing deck_id passed to populate it"""
-    return render(request, "flash_cards/create_edit_deck.html")
+    return render(request, "flash_cards/create_edit_deck.html", {"deck_id": deck_id})
 
 def delete_deck(request, deck_id):
     """view for deleting a deck, with a confirmation message and a button to confirm the deletion"""
-    return render(request, "flash_cards/index.html")
+    return render(request, "flash_cards/index.html", {"deck_id": deck_id})
 
 def add_card(request, deck_id):
     """view for adding a card to a deck, utilising the same template as editing a card, but with no existing card_id passed to populate it"""
-    return render(request, "flash_cards/create_edit_card.html")
+    return render(request, "flash_cards/create_edit_card.html", {"deck_id": deck_id})
 
 def edit_card(request, deck_id, card_id):
     """view for editing a card, utilising the same template as adding a card, but with the existing card_id passed to populate it"""
-    return render(request, "flash_cards/create_edit_card.html")
+    return render(request, "flash_cards/create_edit_card.html", {"deck_id": deck_id, "card_id": card_id})
 
 def delete_card(request, deck_id, card_id):
     """view for deleting a card, with a confirmation message and a button to confirm the deletion"""
-    return render(request, "flash_cards/deck.html")
+    return render(request, "flash_cards/deck.html", {"deck_id": deck_id, "card_id": card_id})
 
 
 def update_user_last_login(sender, user, **kwargs):
