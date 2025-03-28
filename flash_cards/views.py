@@ -1,5 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
+from django.db.models import Count
+
 from flash_cards.models import Deck, Card, User, UserHistory, Comment
 from .forms import DeckForm
 
@@ -12,20 +14,17 @@ def index(request):
 
     if request.user.is_authenticated:
         # Fetch decks created by the authenticated user
-        user_decks = list(Deck.objects.filter(creator=request.user))
+        user_decks = Deck.objects.filter(creator=request.user).annotate(card_count=Count("card"))
 
         # Fetch public decks
-        public_decks = list(Deck.objects.filter(public=True))
+        public_decks = Deck.objects.filter(public=True).annotate(card_count=Count("card"))
 
         # Fetch favourite decks for the user
-        favourite_decks = list(
-            UserHistory.objects.filter(user=request.user, favourite=True)
-            .values_list('deck__id', flat=True)
-        )
+        favourite_deck_ids = list(UserHistory.objects.filter(user=request.user, favourite=True).values_list('deck__id', flat=True))
+        favourite_decks = Deck.objects.filter(id__in=favourite_deck_ids).annotate(card_count=Count("card"))
+
     else:
-        user_decks = []
-        public_decks = []
-        favourite_decks = []
+        pass
 
     return render(
         request,

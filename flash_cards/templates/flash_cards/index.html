@@ -7,6 +7,8 @@
 {% block content %}
     <div class="container mt-5">
 
+
+
         <!-- Row for User Decks -->
 
         <h2>Your Decks</h2>
@@ -22,45 +24,10 @@
             <div id="user-decks-row" class="d-flex gap-3 overflow-auto">
                 {% if user_decks %}
                     {% for deck in user_decks %}
-                    <div class="card" style="width: 18rem;">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ deck.name }}</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">{{ deck.keywords }}</h6>
-                            <p class="card-text"><small>Created on: {{ deck.date_created }}</small></p>
-                        </div>
-                    </div>
+                        {% include "flash_cards/snippets/deck_card.html" %}
                     {% endfor %}
                 {% else %}
                     <p>You have not created any decks yet.</p>
-                {% endif %}
-            </div>
-        </div>
-
-        <!-- Row for Public Decks -->
-
-        <h2 class="mt-5">Public Decks</h2>
-        <div class="position-relative">
-            <button class="btn btn-outline-primary position-absolute start-0 top-50 translate-middle-y"
-                    onclick="scrollLeft('public-decks-row')">
-                &larr;
-            </button>
-            <button class="btn btn-outline-primary position-absolute end-0 top-50 translate-middle-y"
-                    onclick="scrollRight('public-decks-row')">
-                &rarr;
-            </button>
-            <div id="public-decks-row" class="d-flex gap-3 overflow-auto">
-                {% if public_decks %}
-                    {% for deck in public_decks %}
-                    <div class="card" style="width: 18rem;">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ deck.name }}</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">{{ deck.keywords }}</h6>
-                            <p class="card-text"><small>Created on: {{ deck.date_created }}</small></p>
-                        </div>
-                    </div>
-                    {% endfor %}
-                {% else %}
-                    <p>There are no public decks available.</p>
                 {% endif %}
             </div>
         </div>
@@ -80,19 +47,37 @@
             <div id="favourite-decks-row" class="d-flex gap-3 overflow-auto">
                 {% if favourite_decks %}
                     {% for deck in favourite_decks %}
-                    <div class="card" style="width: 18rem;">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ deck.name }}</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">{{ deck.keywords }}</h6>
-                            <p class="card-text"><small>Created on: {{ deck.date_created }}</small></p>
-                        </div>
-                    </div>
+                        {% include "flash_cards/snippets/deck_card.html" %}
                     {% endfor %}
                 {% else %}
-                    <p>You have not favourited any decks yet.</p>
+                    <p>You have not liked any decks yet.</p>
                 {% endif %}
             </div>
         </div>
+        <!-- Row for Public Decks -->
+
+        <h2 class="mt-5">Public Decks</h2>
+        <div class="position-relative">
+            <button class="btn btn-outline-primary position-absolute start-0 top-50 translate-middle-y"
+                    onclick="scrollLeft('public-decks-row')">
+                &larr;
+            </button>
+            <button class="btn btn-outline-primary position-absolute end-0 top-50 translate-middle-y"
+                    onclick="scrollRight('public-decks-row')">
+                &rarr;
+            </button>
+            <div id="public-decks-row" class="d-flex gap-3 overflow-auto">
+                {% if public_decks %}
+                    {% for deck in public_decks %}
+                        {% include "flash_cards/snippets/deck_card.html" %}
+                    {% endfor %}
+                {% else %}
+                    <p>There are no public decks available.</p>
+                {% endif %}
+            </div>
+        </div>
+
+
     </div>
 
     <script>
