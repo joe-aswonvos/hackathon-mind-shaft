@@ -1,5 +1,5 @@
 # Mind shaft
-## contents:
+## Contents:
 - [Perpose](#perpose)
 - [Wireframes](#wireframes)
 - [User Stories](#user-stories)
@@ -8,6 +8,7 @@
 ## Perpose
 The perpose of this website is to provide students with a convenient method of creating and useing digital flash cards to aid with revision. This website can also be used by teachers to create flash card decks for other students. 
 ## Wireframes
+
 ## User Stories
 ### Must have:
   
@@ -16,4 +17,6 @@ The perpose of this website is to provide students with a convenient method of c
 ### Could have:
   
 ## Models
+
 ## How was AI used?
+AI has been used extensively to debug code
