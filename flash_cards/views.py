@@ -12,10 +12,10 @@ def index(request):
 
     if request.user.is_authenticated:
         # Fetch decks created by the authenticated user
-        user_decks = list(Deck.objects.filter(creator=request.user).values_list('id', flat=True))
+        user_decks = list(Deck.objects.filter(creator=request.user))
 
         # Fetch public decks
-        public_decks = list(Deck.objects.filter(public=True).values_list('id', flat=True))
+        public_decks = list(Deck.objects.filter(public=True))
 
         # Fetch favourite decks for the user
         favourite_decks = list(
