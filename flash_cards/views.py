@@ -1,11 +1,38 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Deck
+from django.utils import timezone
+from flash_cards.models import Deck, Card, User, UserHistory, Comment
 from .forms import DeckForm
+
 # Create your views here.
 
 
 def index(request):
-    return render(request, "flash_cards/index.html")
+    """view for the main landing page - if a user is unregistered or not logged in, they will be prompted to do so
+    for a registered user it will show a create deck button, a list of their decks, a list of favourited decks and a list of public decks"""
+
+    if request.user.is_authenticated:
+        # Fetch decks created by the authenticated user
+        user_decks = list(Deck.objects.filter(creator=request.user))
+
+        # Fetch public decks
+        public_decks = list(Deck.objects.filter(public=True))
+
+        # Fetch favourite decks for the user
+        favourite_decks = list(
+            UserHistory.objects.filter(user=request.user, favourite=True)
+            .values_list('deck__id', flat=True)
+        )
+    else:
+        user_decks = []
+        public_decks = []
+        favourite_decks = []
+
+    return render(
+        request,
+        "flash_cards/index.html",
+        {"user_decks": user_decks, "public_decks": public_decks, "favourite_decks": favourite_decks},
+    )
+
 
 
 def create_deck(request):
@@ -52,12 +79,21 @@ def delete_deck(request, deck_id):
 
 
 def add_card(request, deck_id):
+    """view for adding a card to a deck, utilising the same template as editing a card, but with no existing card_id passed to populate it"""
     return render(request, "flash_cards/create_edit_card.html")
 
 
 def edit_card(request, deck_id, card_id):
+    """view for editing a card, utilising the same template as adding a card, but with the existing card_id passed to populate it"""
     return render(request, "flash_cards/create_edit_card.html")
 
 
 def delete_card(request, deck_id, card_id):
+    """view for deleting a card, with a confirmation message and a button to confirm the deletion"""
     return render(request, "flash_cards/deck.html")
+
+
+def update_user_last_login(sender, user, **kwargs):
+    """A reusable component to update the last login date of a user in the User model"""
+    user.date_last_login = timezone.now()
+    user.save()
