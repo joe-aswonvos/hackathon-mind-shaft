@@ -1,1 +1,83 @@
-env.py
+#Byte-compiled / Python artifacts
+*.py[cod]
+__pycache__/
+*.so
+*.pyo
+
+# Virtual environment
+.venv/
+env/
+venv/
+ENV/
+venv.bak/
+
+# Django stuff:
+*.log
+*.pot
+*.pyc
+*.pyo
+db.sqlite3
+*.sqlite3
+
+# If you are using a local database for testing/development
+*.db
+
+# Django secret key or environment variable files
+.env
+*.env
+
+# macOS system files
+.DS_Store
+
+# Editor and IDE settings
+.idea/
+.vscode/
+*.swp
+
+# Logs and debug information
+*.log
+
+# Git conflict files
+*.orig
+
+# Build directories
+build/
+dist/
+*.egg-info/
+.eggs/
+wheels/
+
+# Coverage tool output
+htmlcov/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+
+# Pytest
+.pytest_cache/
+
+# Mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Celery beat schedule file
+celerybeat-schedule
+
+# Local development settings
+local_settings.py
+
+# Node.js (if you use npm/yarn for JavaScript management)
+node_modules/
+package-lock.json
+yarn.lock
+
+# AWS Elastic Beanstalk Settings Files
+.elasticbeanstalk/
+
+# pip-tools
+*.lock
