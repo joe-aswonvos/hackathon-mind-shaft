@@ -1,5 +1,4 @@
 .venv
-env.py
 
 #Byte-compiled / Python artifacts
 *.py[cod]
@@ -28,6 +27,7 @@ db.sqlite3
 # Django secret key or environment variable files
 .env
 *.env
+env.py
 
 # macOS system files
 .DS_Store
