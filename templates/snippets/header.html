@@ -1,7 +1,7 @@
 {% load static %}
 
 <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top align-items-center">
             <div class="container-fluid">
                 <!-- Site Icon -->
                 <a class="navbar-brand" href="#">
@@ -24,16 +24,16 @@
                         {% if user.is_authenticated %}
                             <!-- Logout Button -->
                             <li class="nav-item">
-                                <a class="nav-link" href="">Logout</a>
+                                <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
                             </li>
                         {% else %}
                             <!-- Sign In Button -->
                             <li class="nav-item">
-                                <a class="nav-link" href="">Sign In</a>
+                                <a class="nav-link" href="{% url 'account_login' %}">Sign In</a>
                             </li>
                             <!-- Sign Up Button -->
                             <li class="nav-item">
-                                <a class="nav-link" href="">Sign Up</a>
+                                <a class="nav-link" href="{% url 'account_signup' %}">Sign Up</a>
                             </li>
                         {% endif %}
                     </ul>
