@@ -9,13 +9,13 @@
     <!-- Google Icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
 
 {% include "snippets/header.html" %}
 
-<main class="container mb-5">
+<main class="flex-grow-1">
 
 {% block content %}
 
