@@ -59,12 +59,26 @@ h1,h2,h3,h4,h5,h6 {
 
 .card-front {
     background-color: var(--secondary-color); /* White for the front of the card */
-    display: flex;}
+}
 
 .card-back {
     background-color: var(--accent-color-dark); /* Blue for the back of the card */
     color: var(--tertiary-color);
     transform: rotateY(180deg);
+}
+
+.deck-edit, .deck-delete {
+    color: var(--accent-color);
+    position: relative;
+    pointer-events: auto;
+}
+
+.deck-edit:hover, .deck-delete:hover {
+    color: var(--tertiary-color);
+}
+
+.stretched-link {
+    z-index: 0;
 }
 
 /* Flip effect on hover */

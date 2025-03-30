@@ -3,23 +3,39 @@
 <div class="card deck-card">
     <div class="card-inner">
         <div class="card-front">
-            <div class="card-body d-flex flex-column">
-                <h5 class="card-title"><a href="{% url 'deck' deck.id %}" class="stretched-link text-decoration-none text-reset">{{ deck.name }}</a></h5>
-                <div>
-                    {% for keyword in deck.keywords|split:" " %}
-                        <button type="button" class="btn btn-secondary btn-sm">
-                            {{ keyword|slugify }}
-                        </button>
-                    {% endfor %}
+            <div class="card-body d-flex flex-column h-100">
+                <div class="col-12 stretched-link-container">
+                    <h5 class="card-title"><a href="{% url 'deck' deck.id %}" class="stretched-link text-decoration-none text-reset">{{ deck.name }}</a></h5>
+                    <div>
+                        {% for keyword in deck.keywords|split:" " %}
+                            <button type="button" class="btn btn-secondary btn-sm">
+                                {{ keyword|slugify }}
+                            </button>
+                        {% endfor %}
+                    </div>
                 </div>
                 <p class="card-text mt-auto"><small>Contains {{ deck.card_count }} cards</small></p>
             </div>
         </div>
         <div class="card-back">
             <div class="card-body d-flex flex-column h-100">
-                <h5 class="card-title"><a href="{% url 'deck' deck.id %}" class="stretched-link text-reset text-decoration-none">{{ deck.name }}</a></h5>
-                <div>
-                    <p>Created on: {{ deck.date_created|date:"F j, Y" }}</p>
+                <div class="col-12 stretched-link-container">
+                    <h5 class="card-title">
+                        <a href="{% url 'deck' deck.id %}" class="stretched-link text-reset text-decoration-none">
+                            {{ deck.name }}
+                        </a>
+                    </h5>
+                    <div>
+                        <p>Created on: {{ deck.date_created|date:"F j, Y" }}</p>
+                    </div>
+                </div>
+                <div class="d-flex mt-auto justify-content-around">
+                        <a href="{% url 'edit_deck' deck.id %}" class="deck-edit">
+                            <span class="material-icons">edit</span>
+                        </a>
+                        <a href="{% url 'delete_deck' deck.id %}" class="deck-delete">
+                            <span class="material-icons">delete</span>
+                        </a>
                 </div>
                 <p class="card-text mt-auto"><small>Contains {{ deck.card_count }} cards</small></p>
             </div>
