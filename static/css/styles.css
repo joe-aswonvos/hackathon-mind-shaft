@@ -30,12 +30,38 @@ h1,h2,h3,h4,h5,h6 {
 /* Footer */
 
 
+/* Index page */
+
+.create-btn {
+    color: var(--tertiary-color);
+    background-color: var(--accent-color-dark);
+    border: none;
+    border-radius: 0;
+}
+
+.create-btn:hover {
+    color: var(--primary-color);
+    background-color: var(--accent-color);
+}
+
+.carousel-btn {
+    color: var(--secondary-color);
+    border: none;
+    border-radius: 0;
+    background-color: transparent;
+}
+
+.carousel-btn:hover {
+    color: var(--accent-color-dark);
+}
+
+
 /* Deck Cards */
 
 .deck-card {
     background-color: var(--tertiary-color);
     border: none;
-    border-radius: 0px;
+    border-radius: 0;
     height: 250px;
     width: 200px;
     perspective: 1000px;
@@ -59,12 +85,30 @@ h1,h2,h3,h4,h5,h6 {
 
 .card-front {
     background-color: var(--secondary-color); /* White for the front of the card */
-    display: flex;}
+}
 
 .card-back {
     background-color: var(--accent-color-dark); /* Blue for the back of the card */
     color: var(--tertiary-color);
     transform: rotateY(180deg);
+}
+
+.deck-edit, .deck-delete {
+    color: var(--accent-color);
+    position: relative;
+    pointer-events: auto;
+}
+
+.deck-edit:hover, .deck-delete:hover {
+    color: var(--tertiary-color);
+}
+
+.stretched-link {
+    z-index: 0;
+}
+
+.stretched-link-container{
+    position: relative;
 }
 
 /* Flip effect on hover */
