@@ -1,6 +1,8 @@
-from django.shortcuts import render,reverse
+from django.shortcuts import render, get_object_or_404
+from django.http import JsonResponse
 from django.utils import timezone
 from django.db.models import Count
+from django.contrib import messages
 
 from flash_cards.models import Deck, Card, User, UserHistory, Comment
 
@@ -19,7 +21,8 @@ def index(request):
         public_decks = Deck.objects.filter(public=True).annotate(card_count=Count("card"))
 
         # Fetch favourite decks for the user
-        favourite_deck_ids = list(UserHistory.objects.filter(user=request.user, favourite=True).values_list('deck__id', flat=True))
+        favourite_deck_ids = list(
+            UserHistory.objects.filter(user=request.user, favourite=True).values_list('deck__id', flat=True))
         favourite_decks = Deck.objects.filter(id__in=favourite_deck_ids).annotate(card_count=Count("card"))
 
     else:
@@ -45,17 +48,17 @@ def deck(request, deck_id):
     cards = Card.objects.filter(deck=card_deck)
 
     # Get the index of the card to display, default to 0 (first card) if not provided
-    index = int(request.GET.get('index', 0))
+    card_index = int(request.GET.get('index', 0))
 
     # Ensure the index is within the bounds of the cards list
-    if index < 0 or index >= len(cards):
-        index = 0
+    if card_index < 0 or card_index >= len(cards):
+        card_index = 0
 
     # Get the specific card by index
-    current_card = cards[index]
+    current_card = cards[card_index]
 
     # Calculate the next index
-    next_index = index + 1 if index + 1 < len(cards) else 0
+    next_index = card_index + 1 if card_index + 1 < len(cards) else 0
 
     context = {
         "deck": card_deck,
@@ -71,21 +74,39 @@ def edit_deck(request, deck_id):
     """view for editing a deck, utilising the same template as creating a deck, but with the existing deck_id passed to populate it"""
     return render(request, "flash_cards/create_edit_deck.html", {"deck_id": deck_id})
 
+
 def delete_deck(request, deck_id):
     """view for deleting a deck, with a confirmation message and a button to confirm the deletion"""
     return render(request, "flash_cards/index.html", {"deck_id": deck_id})
+
 
 def add_card(request, deck_id):
     """view for adding a card to a deck, utilising the same template as editing a card, but with no existing card_id passed to populate it"""
     return render(request, "flash_cards/create_edit_card.html", {"deck_id": deck_id})
 
+
 def edit_card(request, deck_id, card_id):
     """view for editing a card, utilising the same template as adding a card, but with the existing card_id passed to populate it"""
     return render(request, "flash_cards/create_edit_card.html", {"deck_id": deck_id, "card_id": card_id})
 
+
 def delete_card(request, deck_id, card_id):
     """view for deleting a card, with a confirmation message and a button to confirm the deletion"""
-    return render(request, "flash_cards/deck.html", {"deck_id": deck_id, "card_id": card_id})
+    # Get the deck instance or return a 404 if it doesn't exist
+    card_deck = get_object_or_404(Deck, id=deck_id)
+
+    # Make sure the card exists and belongs to the specified deck
+    card = get_object_or_404(Card, id=card_id, deck=card_deck)
+
+    if request.method == "POST":
+        # Delete the card
+        card.delete()
+
+        # Return JSON response for fetch
+        return JsonResponse({"success": True})
+
+    return JsonResponse({"error": "Invalid request method"}, status=400)
+
 
 
 def update_user_last_login(sender, user, **kwargs):
