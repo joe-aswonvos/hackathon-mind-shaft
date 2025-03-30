@@ -8,17 +8,23 @@
 {% block content %}
     <div class="container my-5">
 
+        <!-- Welcome Header -->
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1>Welcome, {{ user.username }}!</h1>
+            <a href="{% url 'create_deck' %}" class="btn btn-primary create-btn">Create New Deck</a>
+        </div>
+        
         <!-- Row for User Decks -->
 
         <h2>Your Decks</h2>
         <div class="position-relative">
-            <button class="btn btn-outline-primary position-absolute start-0 top-50 translate-middle-y"
+            <button class="carousel-btn position-absolute start-0 top-50 translate-middle-y zindex-1"
                     onclick="scrollLeft('user-decks-row')">
-                &larr;
+                <span class="material-icons">arrow_back_ios</span>
             </button>
-            <button class="btn btn-outline-primary position-absolute end-0 top-50 translate-middle-y"
+            <button class="carousel-btn position-absolute end-0 top-50 translate-middle-y zindex-1"
                     onclick="scrollRight('user-decks-row')">
-                &rarr;
+                <span class="material-icons">arrow_forward_ios</span>
             </button>
             <div id="user-decks-row" class="d-flex gap-3 overflow-auto">
                 {% if user_decks and user_decks|length > 0 %}
@@ -35,13 +41,13 @@
 
         <h2 class="mt-5">Favourite Decks</h2>
         <div class="position-relative">
-            <button class="btn btn-outline-primary position-absolute start-0 top-50 translate-middle-y"
-                    onclick="scrollLeft('favourite-decks-row')">
-                &larr;
+            <button class="carousel-btn position-absolute start-0 top-50 translate-middle-y zindex-1"
+                    onclick="scrollLeft('user-decks-row')">
+                <span class="material-icons">arrow_back_ios</span>
             </button>
-            <button class="btn btn-outline-primary position-absolute end-0 top-50 translate-middle-y"
-                    onclick="scrollRight('favourite-decks-row')">
-                &rarr;
+            <button class="carousel-btn position-absolute end-0 top-50 translate-middle-y zindex-1"
+                    onclick="scrollRight('user-decks-row')">
+                <span class="material-icons">arrow_forward_ios</span>
             </button>
             <div id="favourite-decks-row" class="d-flex gap-3 overflow-auto">
                 {% if favourite_decks and favourite_decks|length > 0 %}
@@ -57,13 +63,13 @@
 
         <h2 class="mt-5">Public Decks</h2>
         <div class="position-relative">
-            <button class="btn btn-outline-primary position-absolute start-0 top-50 translate-middle-y"
-                    onclick="scrollLeft('public-decks-row')">
-                &larr;
+            <button class="carousel-btn position-absolute start-0 top-50 translate-middle-y zindex-1"
+                    onclick="scrollLeft('user-decks-row')">
+                <span class="material-icons">arrow_back_ios</span>
             </button>
-            <button class="btn btn-outline-primary position-absolute end-0 top-50 translate-middle-y"
-                    onclick="scrollRight('public-decks-row')">
-                &rarr;
+            <button class="carousel-btn position-absolute end-0 top-50 translate-middle-y zindex-1"
+                    onclick="scrollRight('user-decks-row')">
+                <span class="material-icons">arrow_forward_ios</span>
             </button>
             <div id="public-decks-row" class="d-flex gap-3 overflow-auto">
                 {% if public_decks and public_decks|length > 0 %}

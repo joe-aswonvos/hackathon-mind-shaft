@@ -30,12 +30,38 @@ h1,h2,h3,h4,h5,h6 {
 /* Footer */
 
 
+/* Index page */
+
+.create-btn {
+    color: var(--tertiary-color);
+    background-color: var(--accent-color-dark);
+    border: none;
+    border-radius: 0;
+}
+
+.create-btn:hover {
+    color: var(--primary-color);
+    background-color: var(--accent-color);
+}
+
+.carousel-btn {
+    color: var(--secondary-color);
+    border: none;
+    border-radius: 0;
+    background-color: transparent;
+}
+
+.carousel-btn:hover {
+    color: var(--accent-color-dark);
+}
+
+
 /* Deck Cards */
 
 .deck-card {
     background-color: var(--tertiary-color);
     border: none;
-    border-radius: 0px;
+    border-radius: 0;
     height: 250px;
     width: 200px;
     perspective: 1000px;
@@ -79,6 +105,10 @@ h1,h2,h3,h4,h5,h6 {
 
 .stretched-link {
     z-index: 0;
+}
+
+.stretched-link-container{
+    position: relative;
 }
 
 /* Flip effect on hover */
