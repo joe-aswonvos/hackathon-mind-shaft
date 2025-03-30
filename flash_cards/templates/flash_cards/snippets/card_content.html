@@ -8,6 +8,7 @@
 
             <!-- Edit and Delete Icons on the Right -->
             <div>
+                <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
                 <!-- Edit Icon -->
                 <a href="{% url 'edit_card' deck.id current_card.id %}" class="text-primary me-3" title="Edit Card">
                     <span class="material-icons">
@@ -16,7 +17,7 @@
                 </a>
 
                 <!-- Delete Icon -->
-                <a href="{% url 'delete_card' deck.id current_card.id %}" class="text-danger" title="Delete Card">
+                <a href="#" class="text-danger" onclick="confirmDeletion({{ deck.id }}, {{ current_card.id }})" title="Delete Card">
                     <span class="material-icons">
                         delete
                     </span>
