@@ -78,22 +78,22 @@ def edit_deck(request, deck_id):
 
 def update_deck(request, deck_id):
     """Push update to existing deck"""
-    title = request.POST['title']
+    name = request.POST['name']
     keywords = request.POST['keywords']
-    new_deck = Deck(name=title, keywords=keywords, creator=request.user)
+    new_deck = Deck(name=name, keywords=keywords, creator=request.user)
     new_deck = get_object_or_404(Deck, id=deck_id)
-    new_deck.name = title
+    new_deck.name = name
     new_deck.keywords = keywords
     new_deck.creator = request.user
     new_deck.save()
-    return render(request, "flash_cards/create_edit_deck.html", {"deck": new_deck})
+    return render(request, "flash_cards/edit_deck.html", {"deck": new_deck})
 
 
 def insert_deck(request):
     """Push update to existing deck"""
-    title = request.POST['title']
+    name = request.POST['name']
     keywords = request.POST['keywords']
-    new_deck = Deck(name=title, keywords=keywords, creator=request.user)
+    new_deck = Deck(name=name, keywords=keywords, creator=request.user)
     new_deck.save()
     return render(request, "flash_cards/edit_deck.html", {"deck": new_deck})
 
@@ -115,12 +115,42 @@ def delete_deck(request, deck_id):
 
 def add_card(request, deck_id):
     """view for adding a card to a deck, utilising the same template as editing a card, but with no existing card_id passed to populate it"""
-    return render(request, "flash_cards/create_edit_card.html", {"deck_id": deck_id})
+    deck = get_object_or_404(Deck, id=deck_id)
+    return render(request, "flash_cards/create_card.html", {"deck": deck})
 
 
 def edit_card(request, deck_id, card_id):
     """view for editing a card, utilising the same template as adding a card, but with the existing card_id passed to populate it"""
-    return render(request, "flash_cards/create_edit_card.html", {"deck_id": deck_id, "card_id": card_id})
+    deck = get_object_or_404(Deck, id=deck_id)
+    card = get_object_or_404(Card, id=card_id, deck_id=deck_id)
+    return render(request, "flash_cards/edit_card.html", {"deck":deck, "card": card})
+
+
+def update_card(request, deck_id, card_id):
+    """Push update to existing deck"""
+    name = request.POST['name']
+    text = request.POST['text']
+    question = request.POST['question']
+    answers = request.POST['answers']
+    new_card = get_object_or_404(Card, id=card_id, deck_id=deck_id)
+    new_card.name = name
+    new_card.text = text
+    new_card.question = question
+    new_card.answers = answers
+    new_card.save()
+    return render(request, "flash_cards/edit_card.html", {"deck": deck_id, "card": new_card})
+
+
+def insert_card(request, deck_id):
+    """Push update to existing deck"""
+    deck = get_object_or_404(Deck, id=deck_id)
+    name = request.POST['name']
+    text = request.POST['text']
+    question = request.POST['question']
+    answers = request.POST['answers']
+    new_card = Card(name=name, text=text, question_text=question, answers=answers, deck_id=deck_id)
+    new_card.save()
+    return render(request, "flash_cards/edit_card.html", {"deck": deck, "card": new_card})
 
 
 def delete_card(request, deck_id, card_id):
@@ -139,7 +169,6 @@ def delete_card(request, deck_id, card_id):
         return JsonResponse({"success": True})
 
     return JsonResponse({"error": "Invalid request method"}, status=400)
-
 
 
 def update_user_last_login(sender, user, **kwargs):

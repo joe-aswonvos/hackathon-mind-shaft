@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function()  {
             .then((response) => {
                 if (response.ok) {
                     // Reload the page or remove the card element from the DOM
-                    location.reload(); // This reloads the page
+                    alert("Card deleted successfully.");
                 } else {
                     alert("Failed to delete the card.");
                 }

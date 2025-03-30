@@ -33,8 +33,14 @@
                         <a href="{% url 'edit_deck' deck.id %}" class="deck-edit">
                             <span class="material-icons">edit</span>
                         </a>
-                        <a href="{% url 'delete_deck' deck.id %}" class="deck-delete">
-                            <span class="material-icons">delete</span>
+                        <div class="col-3 d-flex justify-content-center">
+                            <a href="{% url 'add_card' deck.id %}" class="btn btn-primary mb-3">Add Card</a>
+                        </div>
+                        {% csrf_token %}
+                        <a href="#" onclick="confirmDeckDeletion({{ deck.id }})" title="Delete Deck">
+                            <span class="material-icons">
+                                delete
+                            </span>
                         </a>
                 </div>
                 <p class="card-text"><small>Contains {{ deck.card_count }} cards</small></p>
