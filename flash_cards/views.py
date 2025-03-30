@@ -123,11 +123,12 @@ def edit_card(request, deck_id, card_id):
     """view for editing a card, utilising the same template as adding a card, but with the existing card_id passed to populate it"""
     deck = get_object_or_404(Deck, id=deck_id)
     card = get_object_or_404(Card, id=card_id, deck_id=deck_id)
-    return render(request, "flash_cards/edit_card.html", {"deck":deck, "card": card})
+    return render(request, "flash_cards/edit_card.html", {"deck": deck, "card": card})
 
 
 def update_card(request, deck_id, card_id):
     """Push update to existing deck"""
+    deck = get_object_or_404(Deck, id=deck_id)
     name = request.POST['name']
     text = request.POST['text']
     question = request.POST['question']
@@ -135,10 +136,10 @@ def update_card(request, deck_id, card_id):
     new_card = get_object_or_404(Card, id=card_id, deck_id=deck_id)
     new_card.name = name
     new_card.text = text
-    new_card.question = question
+    new_card.question_text = question
     new_card.answers = answers
     new_card.save()
-    return render(request, "flash_cards/edit_card.html", {"deck": deck_id, "card": new_card})
+    return render(request, "flash_cards/edit_card.html", {"deck": deck, "card": new_card})
 
 
 def insert_card(request, deck_id):

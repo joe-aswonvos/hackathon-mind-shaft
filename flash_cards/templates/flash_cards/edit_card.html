@@ -21,7 +21,7 @@
     <form action="{% url 'update_card' deck.id card.id %}" method="POST">
         {% csrf_token %}
         <p>Name</p>
-        <input type="text" placeholder="{{ card.name }}" name="title"></input>
+        <input type="text" placeholder="{{ card.name }}" name="name"></input>
         <p>Text</p>
         <input type="text" placeholder="{{ card.text }}" name="text"></input>
         <p>Question</p>
