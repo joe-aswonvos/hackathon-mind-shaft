@@ -4,16 +4,12 @@
 {% block content %}
 <div class="container mt-5">
     <div class="row justify-content-center">
-        <div class="col-md-6">
+        <div class="col-md-6 d-flex flex-column text-align-center">
             <h2 class="text-center mb-4">{% trans "Login" %}</h2>
-            <form method="post" action="{% url 'account_login' %}">
+            <form method="post" action="{% url 'account_login' %}" class="text-center my-3">
                 {% csrf_token %}
                 {{ form.as_p }}
-                <div class="form-check mb-3">
-                    <input type="checkbox" class="form-check-input" id="remember" name="remember">
-                    <label class="form-check-label" for="remember">{% trans "Remember Me" %}</label>
-                </div>
-                <button type="submit" class="btn btn-primary w-100">{% trans "Login" %}</button>
+                <button type="submit" class="btn create-btn w-100">{% trans "Login" %}</button>
             </form>
             <p class="text-center mt-3">
                 <a href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
