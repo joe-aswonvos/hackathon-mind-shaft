@@ -6,7 +6,9 @@
 {% endblock %}
 
 {% block content %}
-    <div class="container my-5">
+    <div class="container">
+
+    {% if user.is_authenticated %}
 
         <!-- Welcome Header -->
         <div class="d-flex justify-content-between align-items-center mb-4">
@@ -81,6 +83,13 @@
                 {% endif %}
             </div>
         </div>
+
+    {% else %}
+
+        {% include "flash_cards/snippets/landing_content.html" %}
+
+    {% endif %}
+
 
 
     </div>

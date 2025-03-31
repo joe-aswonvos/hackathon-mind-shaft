@@ -10,7 +10,13 @@
 
     <div class="container my-5">
         <div class="row justify-content-center">
-            <h1 class="text-center">{{ deck.name }}</h1>
+            <h1 class="text-center">{{ deck.name }}
+            {% if user.is_authenticated and user == deck.creator %}
+                <a href="{% url 'add_card' deck.id %}" class="btn create-btn mb-3" title="Add Card" aria-label="Add Card">
+                    Add Card
+                </a>
+            {% endif %}
+            </h1>
         </div>
         <div class="row justify-content-center mt-3">
             <div class="col-3 d-flex justify-content-center">
@@ -18,7 +24,7 @@
             </div>
 
             <div class="col-3 d-flex justify-content-center">
-                <button class="btn create-btn mb-3" type="button" data-bs-toggle="offcanvas"
+                <button class="btn create-btn mb-3 h2" type="button" data-bs-toggle="offcanvas"
                         data-bs-target="#offcanvasDeck"
                         aria-controls="offcanvasDeck">
                     Show Deck
