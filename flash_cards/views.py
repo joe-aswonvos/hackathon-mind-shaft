@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import JsonResponse
+from django.db import transaction
 from django.utils import timezone
 from django.db.models import Count
 from django.contrib import messages
@@ -39,7 +40,7 @@ def index(request):
 
 def create_deck(request):
     """view for creating a new deck, utilising the same template as editing a deck, but with no existing deck_id passed to populate it"""
-    return render(request, "flash_cards/create_edit_deck.html")
+    return render(request, "flash_cards/create_deck.html")
 
 
 def deck(request, deck_id):
@@ -72,22 +73,86 @@ def deck(request, deck_id):
 
 def edit_deck(request, deck_id):
     """view for editing a deck, utilising the same template as creating a deck, but with the existing deck_id passed to populate it"""
-    return render(request, "flash_cards/create_edit_deck.html", {"deck_id": deck_id})
+    card_deck = Deck.objects.get(id=deck_id)
+    return render(request, "flash_cards/edit_deck.html", {"deck": card_deck})
+
+
+def update_deck(request, deck_id):
+    """Push update to existing deck"""
+    name = request.POST['name']
+    keywords = request.POST['keywords']
+    new_deck = Deck(name=name, keywords=keywords, creator=request.user)
+    new_deck = get_object_or_404(Deck, id=deck_id)
+    new_deck.name = name
+    new_deck.keywords = keywords
+    new_deck.creator = request.user
+    new_deck.save()
+    return render(request, "flash_cards/edit_deck.html", {"deck": new_deck})
+
+
+def insert_deck(request):
+    """Push update to existing deck"""
+    name = request.POST['name']
+    keywords = request.POST['keywords']
+    new_deck = Deck(name=name, keywords=keywords, creator=request.user)
+    new_deck.save()
+    return render(request, "flash_cards/edit_deck.html", {"deck": new_deck})
 
 
 def delete_deck(request, deck_id):
     """view for deleting a deck, with a confirmation message and a button to confirm the deletion"""
-    return render(request, "flash_cards/index.html", {"deck_id": deck_id})
+    # Get the deck instance or return a 404 if it doesn't exist
+    deck = get_object_or_404(Deck, id=deck_id)
+
+    if request.method == "POST":
+        # Delete the card
+        deck.delete()
+
+        # Return JSON response for fetch
+        return JsonResponse({"success": True})
+
+    return JsonResponse({"error": "Invalid request method"}, status=400)
 
 
 def add_card(request, deck_id):
     """view for adding a card to a deck, utilising the same template as editing a card, but with no existing card_id passed to populate it"""
-    return render(request, "flash_cards/create_edit_card.html", {"deck_id": deck_id})
+    deck = get_object_or_404(Deck, id=deck_id)
+    return render(request, "flash_cards/create_card.html", {"deck": deck})
 
 
 def edit_card(request, deck_id, card_id):
     """view for editing a card, utilising the same template as adding a card, but with the existing card_id passed to populate it"""
-    return render(request, "flash_cards/create_edit_card.html", {"deck_id": deck_id, "card_id": card_id})
+    deck = get_object_or_404(Deck, id=deck_id)
+    card = get_object_or_404(Card, id=card_id, deck_id=deck_id)
+    return render(request, "flash_cards/edit_card.html", {"deck": deck, "card": card})
+
+
+def update_card(request, deck_id, card_id):
+    """Push update to existing deck"""
+    deck = get_object_or_404(Deck, id=deck_id)
+    name = request.POST['name']
+    text = request.POST['text']
+    question = request.POST['question']
+    answers = request.POST['answers']
+    new_card = get_object_or_404(Card, id=card_id, deck_id=deck_id)
+    new_card.name = name
+    new_card.text = text
+    new_card.question_text = question
+    new_card.answers = answers
+    new_card.save()
+    return render(request, "flash_cards/edit_card.html", {"deck": deck, "card": new_card})
+
+
+def insert_card(request, deck_id):
+    """Push update to existing deck"""
+    deck = get_object_or_404(Deck, id=deck_id)
+    name = request.POST['name']
+    text = request.POST['text']
+    question = request.POST['question']
+    answers = request.POST['answers']
+    new_card = Card(name=name, text=text, question_text=question, answers=answers, deck_id=deck_id)
+    new_card.save()
+    return render(request, "flash_cards/edit_card.html", {"deck": deck, "card": new_card})
 
 
 def delete_card(request, deck_id, card_id):
@@ -106,7 +171,6 @@ def delete_card(request, deck_id, card_id):
         return JsonResponse({"success": True})
 
     return JsonResponse({"error": "Invalid request method"}, status=400)
-
 
 
 def update_user_last_login(sender, user, **kwargs):

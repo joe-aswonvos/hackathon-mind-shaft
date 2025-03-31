@@ -8,7 +8,7 @@
                     <h5 class="card-title"><a href="{% url 'deck' deck.id %}" class="stretched-link text-decoration-none text-reset">{{ deck.name }}</a></h5>
                     <div>
                         {% for keyword in deck.keywords|split:" " %}
-                            <button type="button" class="btn btn-secondary btn-sm">
+                            <button type="button" class="btn btn-keywords btn-sm m-1">
                                 {{ keyword|slugify }}
                             </button>
                         {% endfor %}
@@ -33,8 +33,10 @@
                         <a href="{% url 'edit_deck' deck.id %}" class="deck-edit">
                             <span class="material-icons">edit</span>
                         </a>
-                        <a href="{% url 'delete_deck' deck.id %}" class="deck-delete">
-                            <span class="material-icons">delete</span>
+                        <a href="#" onclick="confirmDeckDeletion({{ deck.id }})" title="Delete Deck" class="deck-delete">
+                            <span class="material-icons">
+                                delete
+                            </span>
                         </a>
                 </div>
                 <p class="card-text"><small>Contains {{ deck.card_count }} cards</small></p>

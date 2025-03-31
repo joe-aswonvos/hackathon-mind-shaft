@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% load custom_filters %}
+
+{% block title %}
+    {{ card.name }}
+{% endblock %}
+
+{% block content %}
+
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <h1 class="text-center">Editing Card: {{ card.name }}</h1>
+    </div>
+    <div class="row justify-content-center mt-3">
+        <div class="col-3 d-flex justify-content-center">
+            <a href="{% url 'index' %}" class="btn btn-secondary mb-3">Home</a>
+        </div>
+    </div>
+    <form action="{% url 'update_card' deck.id card.id %}" method="POST">
+        {% csrf_token %}
+        <p>Name</p>
+        <input type="text" placeholder="{{ card.name }}" name="name"></input>
+        <p>Text</p>
+        <input type="text" placeholder="{{ card.text }}" name="text"></input>
+        <p>Question</p>
+        <input type="text" placeholder="{{ card.question_text }}" name="question"></input>
+        <p>Answers</p>
+        <input type="text" placeholder="{{ card.answers }}" name="answers"></input>
+        <button type="submit" class="btn-save" aria-label="Save">Save</button>
+    </form>
+    <a href="#" class="text-danger" onclick="confirmCardDeletion(`{{ deck.id }}`, `{{ card.id }}`)" title="Delete Card">
+        <span class="material-icons">
+            delete
+        </span>
+    </a>
+</div>
+
+{% endblock %}
