@@ -103,6 +103,13 @@ h1,h2,h3,h4,h5,h6 {
     color: var(--tertiary-color);
 }
 
+.btn-keywords {
+    color: var(--tertiary-color);
+    background-color: var(--primary-color);
+    border: none;
+    border-radius: 0;
+}
+
 .stretched-link {
     z-index: 0;
 }
@@ -114,3 +121,41 @@ h1,h2,h3,h4,h5,h6 {
 /* Flip effect on hover */
 .deck-card:hover .card-inner {
     transform: rotateY(180deg);}
+
+
+/* Individual Card Page styling */
+
+.card-image {
+    height: 200px;
+    object-fit: cover;
+}
+
+.card-offcanvas {
+    height: 100px;
+    text-wrap:balance;
+    background-color: var(--accent-color-dark);
+    color: var(--tertiary-color);
+    text-align: center;
+    border-radius: 0;
+    border: none;
+}
+
+.card-offcanvas:hover {
+    background-color: var(--accent-color);
+    color: var(--primary-color);
+}
+
+.card-icon {
+    color: var(--accent-color-dark);
+    text-decoration: none;
+}
+
+.card-icon:hover {
+    color: var(--accent-color);
+}
+
+.card-insert-container {
+    background-color: var(--secondary-color);
+    border: none;
+    border-radius: 0;
+}
