@@ -1,5 +1,7 @@
 # MindShaft
 
+[View the Deployed Project Here](https://ci-hfds-bc-hckthn2-mind-shaft-1da444c39fea.herokuapp.com/)
+
 ## Overview
 MindShaft is a Django-based web application designed to simplify the process of managing and studying flashcards. It provides an intuitive interface for creating, organizing, and reviewing your flashcards, making it easier to retain knowledge and improve learning efficiency.
 

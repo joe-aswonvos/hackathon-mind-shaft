@@ -86,7 +86,7 @@ class Card(models.Model):
     hidden_text = models.TextField(blank=True)
     question = models.BooleanField(default=False)
     question_text = models.TextField(blank=True)
-    answers = models.JSONField(blank=True)
+    answers = models.JSONField(null=True)
     comments_enabled = models.BooleanField(default=True)
 
     def __str__(self):
